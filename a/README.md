@@ -17,6 +17,7 @@ A concise orientation for working on the Peoplestown Shuttle Expo app and its sm
 ## Setup
 1. Install client dependencies from the repo root:
    ```bash
+   cd a
    npm install
    ```
 2. Install backend dependencies:
