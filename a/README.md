@@ -15,7 +15,7 @@ A concise orientation for working on the Peoplestown Shuttle Expo app and its sm
 - Stripe test keys and a Gmail app password (for verification emails) for the backend.
 
 ## Setup
-1. Install client dependencies from the repo root of the app:
+1. Install client dependencies from the repo root:
    ```bash
    cd a
    npm install
@@ -25,7 +25,7 @@ A concise orientation for working on the Peoplestown Shuttle Expo app and its sm
    cd server
    npm install
    ```
-3. Environment for the backend (`a/server/.env`):
+3. Environment for the backend (`server/.env`):
    ```bash
    STRIPE_SECRET_KEY=sk_test_...
    EMAIL_USER=your_gmail_username
@@ -34,15 +34,15 @@ A concise orientation for working on the Peoplestown Shuttle Expo app and its sm
    ```
    The backend reads `serviceAccountKey.json` for Firebase admin access—replace it with credentials for your Firebase project if needed.
 4. Point the app at your backend for payments. In `app/(tabs)/home.tsx`, update the `fetch` call to `/create-payment-intent` to use your server URL (the sample code currently points to an ngrok tunnel).
-5. Start the backend before running the client so Stripe and Dialogflow calls succeed. From `a/server`, run `npm start` (listens on port 3000 by default), expose it with `ngrok http 3000` (or similar), and point the app at that public URL when testing payments and AI flows.
+5. Start the backend before running the client so Stripe and Dialogflow calls succeed. From `server`, run `npm start` (listens on port 3000 by default), expose it with `ngrok http 3000` (or similar), and point the app at that public URL when testing payments and AI flows.
 
 ## Running the project
-- **Backend** (from `a/server`):
+- **Backend** (from `server`):
   ```bash
   npm start
   ```
   Runs the Express server on port 3000. Endpoints include `/create-payment-intent`, `/payment-sheet`, `/create-setup-intent`, `/list-payment-methods`, `/attach-payment-method`, `/detach-payment-method`, `/refund`, `/send-verification`, `/verify-code`, and `/dialogflow/fulfillment`. Start this first (plus an `ngrok http 3000` tunnel) so the client can reach payments and AI endpoints.
-- **Expo app** (from `a`):
+- **Expo app**:
   ```bash
   npm start
   ```
@@ -55,12 +55,12 @@ If you need to ship the mobile app to real users, here’s the shortest path wit
    - Apple: Enroll in the Apple Developer Program and make sure you have access to App Store Connect.
    - Google: Sign in to the Google Play Console with a developer account.
 2. **Log into Expo and configure app metadata**
-   - From `a/`, run `npx expo login` and sign in.
+   - Run `npx expo login` and sign in.
    - Update `app.json` with the correct app name, slug, icons, splash, and bundle identifiers (iOS `ios.bundleIdentifier`, Android `android.package`).
    - Ensure `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) match the Firebase project you want to ship.
 3. **Create production builds**
-   - iOS: `cd a && npx expo build:ios` (Expo will guide you through certificates; choose the “Let Expo handle it” option if you’re unsure.)
-   - Android: `cd a && npx expo build:android` (pick the **APK** for easy upload or **AAB** if required by Play Store; Expo can also manage the keystore for you.)
+   - iOS: `npx expo build:ios` (Expo will guide you through certificates; choose the “Let Expo handle it” option if you’re unsure.)
+   - Android: `npx expo build:android` (pick the **APK** for easy upload or **AAB** if required by Play Store; Expo can also manage the keystore for you.)
    - Wait for the build links that Expo prints; download the resulting `.ipa` (iOS) and `.apk`/`.aab` (Android).
 4. **Test the build artifacts**
    - Install the Android APK on a device (enable “install from unknown sources”).
