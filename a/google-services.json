@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "885013092493",
+    "project_id": "peoplestown-app",
+    "storage_bucket": "peoplestown-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885013092493:android:081588be534db2f2e1eac4",
+        "android_client_info": {
+          "package_name": "com.peoplestoen.shuttle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885013092493-our1ku2af7sm8o6o1q14gegjaj96nu6s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.peoplestoen.shuttle",
+            "certificate_hash": "3cba249039565bd86523084e1d2ad6e3fda40011"
+          }
+        },
+        {
+          "client_id": "885013092493-88aifauj1ud135j1fpltt4079023rp3h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZG9xKDhOZPKFvgYsc0SUfF6Iyc5MzaQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885013092493-88aifauj1ud135j1fpltt4079023rp3h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "885013092493-35n2upfivmu31oecsiuc597t73fll16k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.peoplestownshuttle.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

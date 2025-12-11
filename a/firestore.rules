@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /stops/{doc} {
+      allow read: if true;
+    }
+
+    match /vehicles/{doc} {
+      allow read: if true;
+    }
+
+    match /guests/{guestId} {
+      allow create, read, update, delete: if
+        guestId.matches('guest-.*');
+    }
+
+    match /userInfo/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth == null && userId.matches('guest-.*');
+
+      match /booking/{bookingId} {
+        allow create, read, update, delete: if
+          (request.auth != null && (
+            request.auth.uid == userId ||
+            get(/databases/$(database)/documents/userInfo/$(request.auth.uid)).data.role in ['admin', 'driver']
+          )) ||
+          (request.auth == null && userId.matches('guest-.*'));
+      }
+    }
+
+    match /booking/{bookingId} {
+      allow create: if
+        (request.auth != null && request.resource.data.userId == request.auth.uid) ||
+        (request.auth == null &&
+          request.resource.data.guestId.matches('guest-.*') &&
+          request.resource.data.status == "pending");
+
+      allow read, update, delete: if
+        (request.auth != null && (
+          resource.data.userId == request.auth.uid ||
+          get(/databases/$(database)/documents/userInfo/$(request.auth.uid)).data.role in ['admin', 'driver']
+        )) ||
+        (request.auth == null && resource.data.guestId.matches('guest-.*'));
+    }
+
+    match /ride_logs/{rideId} {
+      allow create: if true;
+      allow read, update, delete: if
+        request.auth != null &&
+        get(/databases/$(database)/documents/userInfo/$(request.auth.uid)).data.role == 'admin';
+    }
+  }
+}

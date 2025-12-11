@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("mode");
+
+  if (mode === "resetPassword") {
+    window.location.href = "/reset-password.html" + window.location.search;
+  } else if (mode === "verifyEmail") {
+    window.location.href = "/verify-email.html" + window.location.search;
+  }
+</script>
+</html>
