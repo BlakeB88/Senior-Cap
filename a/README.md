@@ -34,14 +34,13 @@ A concise orientation for working on the Peoplestown Shuttle Expo app and its sm
    ```
    The backend reads `serviceAccountKey.json` for Firebase admin access—replace it with credentials for your Firebase project if needed.
 4. Point the app at your backend for payments. In `app/(tabs)/home.tsx`, update the `fetch` call to `/create-payment-intent` to use your server URL (the sample code currently points to an ngrok tunnel).
-5. Start the backend before running the client so Stripe and Dialogflow calls succeed. From `a/server`, run `npm start` (listens on port 3000 by default), expose it with `ngrok http 3000` (or similar), and point the app at that public URL when testing payments and AI flows.
 
 ## Running the project
 - **Backend** (from `a/server`):
   ```bash
   npm start
   ```
-  Runs the Express server on port 3000. Endpoints include `/create-payment-intent`, `/payment-sheet`, `/create-setup-intent`, `/list-payment-methods`, `/attach-payment-method`, `/detach-payment-method`, `/refund`, `/send-verification`, `/verify-code`, and `/dialogflow/fulfillment`. Start this first (plus an `ngrok http 3000` tunnel) so the client can reach payments and AI endpoints.
+  Runs the Express server on port 3000. Endpoints include `/create-payment-intent`, `/payment-sheet`, `/create-setup-intent`, `/list-payment-methods`, `/attach-payment-method`, `/detach-payment-method`, `/refund`, `/send-verification`, `/verify-code`, and `/dialogflow/fulfillment`.
 - **Expo app** (from `a`):
   ```bash
   npm start
